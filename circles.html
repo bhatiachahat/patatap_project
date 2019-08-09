@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./circles.css">
+    <script src="./paper-full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.core.min.js"> </script>
+    <script src="./A/data.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+        document.querySelector("body").addEventListener("keydown", checkKey);
+        function checkKey() {
+            key = event.keyCode;
+            console.log("key is",key);
+        }
+        alert("press any key between a-z and turn up the volume!");
+        
+         
+        var circles=[];
+        function onKeyDown(event){
+           
+            console.log(String.fromCharCode(event.keyCode));
+             if(keyData[event.key]){
+                var keyCode = (window.event) ? event.which : event.keyCode;
+                
+                console.log([event.keyCode]);
+                if (!event) event = window.event;   var kCd =  event.which ||  event.keyCode;
+               console.log(kCd);
+                var randomNumber=parseInt(10*(Math.random()));
+
+                console.log("iii",keyData[event.key])
+                console.log("ll",[event.key]);
+              
+                var maxPoint=new Point(view.size.width,view.size.height);
+                var randomPoint=Point.random();
+                var point1=maxPoint*randomPoint;
+                if(randomNumber==0){
+                    keyData[event.key].sound.play();
+                    var decagon = new Path.RegularPolygon(new Point(point1), 7, 300);
+                    decagon.fillColor = keyData[event.key].color;
+                    circles.push(decagon);
+                }
+                else if(randomNumber==1){
+                    keyData[event.key].sound.play();
+                    var newCircle=new Path.Circle(point1,500)
+                    newCircle.fillColor=keyData[event.key].color;
+                    circles.push(newCircle);
+                }
+                else if(randomNumber==2){
+                    keyData[event.key].sound.play();
+                    var decagon = new Path.RegularPolygon(new Point(point1), 3, 300);
+                    decagon.fillColor = keyData[event.key].color;
+                    circles.push(decagon);
+                }
+                else if(randomNumber==3){
+                    keyData[event.key].sound.play();
+                    var decagon = new Path.RegularPolygon(new Point(point1), 10, 300);
+                    decagon.fillColor =keyData[event.key].color;
+                    circles.push(decagon);
+                } else if(randomNumber==4){
+                    keyData[event.key].sound.play();
+                    var newCircle=new Path.Circle(point1,600)
+                    newCircle.fillColor=keyData[event.key].color;
+                    circles.push(newCircle);
+                }
+                else if(randomNumber==5){
+                    keyData[event.key].sound.play();
+                    var newCircle=new Path.Circle(point1,600)
+                    newCircle.fillColor=keyData[event.key].color;
+                    circles.push(newCircle);
+                }
+                else if(randomNumber==6){
+                    keyData[event.key].sound.play();
+                    keyData[event.key].sound.play();
+                    var decagon = new Path.RegularPolygon(new Point(point1), 4, 300);
+                    decagon.fillColor = keyData[event.key].color;
+                    circles.push(decagon);
+                }
+                else if(randomNumber==7){
+                    keyData[event.key].sound.play();
+                    var newCircle=new Path.Circle(point1,600)
+                    newCircle.fillColor=keyData[event.key].color;
+                    circles.push(newCircle);
+                }
+                
+                else{
+                    keyData[event.key].sound.play();
+               
+                    var triangle = new Path.RegularPolygon(new Point(point1), 5, 300);
+    triangle.fillColor = keyData[event.key].color;
+    
+                    circles.push(triangle);
+                }
+                
+                
+               
+           
+            }
+            
+            
+        }
+        function onFrame(event){
+            for(var i=0;i<circles.length;i++){
+                circles[i].fillColor.hue +=1;
+                circles[i].scale(.9);
+
+            }
+        }
+        
+      
+console.log(view.size.width);
+console.log(view.size.height);
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" resize></canvas>
+</body>
+</html>
